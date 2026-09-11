@@ -59,13 +59,13 @@ sudo apt install ros-humble-urdf-tutorial \
                  ros-humble-robot-state-publisher \
                  ros-humble-rviz2
 ```
-Replace humble with your ROS 2 distro if needed.
+Replace humble with your ROS 2 distro if needed. I use Jazzy
 
 2. **Clone the repository**  
 
 ```bash
-git clone https://github.com/samuelajala01/kinova.git
-cd kinova/
+git clone https://github.com/samuelajala01/kinova_arm.git
+cd kinova_arm/
 
 ```
 
@@ -76,7 +76,7 @@ colcon build --symlink-install
 source install/setup.bash
 ```
 
-4. **Launch Rviz with the Kinova Gen3 URDF from ws**
+4. **Launch Rviz with the Kinova Gen3 URDF from the ws**
 
 ```bash
 ros2 launch urdf_tutorial display.launch.py model:=$(pwd)/src/kinova_description/urdf/kinova.urdf
@@ -97,8 +97,5 @@ ros2 launch urdf_tutorial display.launch.py model:=$(pwd)/src/kinova_description
 - Control & Planning: MoveIt setup for motion planning
 - Sensor & Gripper Modeling: Extend URDF to include sensors and gripper interactions
 
-*Developed as part of the [Aurora Robotics](https://ng.linkedin.com/company/aurora-robotics-in) Core Robotics Workshop – Task 4.*
-
-
-readme template modified from [here](!https://github.com/Bakel-Bakel/abdullahi-ufractor_xarm7)
+*Developed as part of the [Aurora Robotics](https://ng.linkedin.com/company/aurora-robotics-in) Core Robotics Workshop – Task 4. Readme template modified from [here](!https://github.com/Bakel-Bakel/abdullahi-ufractor_xarm7)*
 
