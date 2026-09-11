@@ -1,0 +1,203 @@
+<robot name="kinova_arm">
+  <material name="gray_colour">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  
+  <material name="white_colour">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+  <!-- ================= ARM ================= -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/base_link.STL" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_shoulder" type="revolute">
+    <origin xyz="0 0 0.125" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="shoulder_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="shoulder_link">
+    <visual>
+      <origin xyz="0 0.0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/shoulder_link.STL" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link>
+
+  <joint name="shoulder_to_upper_arm" type="revolute">
+    <origin xyz="0 -0.029 0.115" rpy="1.56 0 0"/>
+    <parent link="shoulder_link"/>
+    <child link="arm_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="arm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/arm_link.STL" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link>
+
+  <joint name="arm_to_upper_arm" type="revolute">
+    <origin xyz="0 0.28 0" rpy="3.14 0 0"/>
+    <parent link="arm_link"/>
+    <child link="forearm_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
+  </joint> 
+  
+  <link name="forearm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/forearm_link.STL" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link>
+
+  <joint name="forearm_to_lower_wrist" type="revolute">
+    <origin xyz="0 -0.14 0.02" rpy="1.57 3.14 0"/>
+    <parent link="forearm_link"/>
+    <child link="lower_wrist_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="lower_wrist_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/lower_wrist_link.STL" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link> 
+
+  <joint name="lower_wrist_to_upper_wrist" type="revolute">
+    <origin xyz="0.02 0 0.105" rpy="0 1.57 0"/>
+    <parent link="lower_wrist_link"/>
+    <child link="upper_wrist_link"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="upper_wrist_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/upper_wrist_link.STL" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link>  
+
+  <!-- ================= ARM TO GRIPPER CONNECTION ================= -->
+
+  <joint name="arm_to_gripper" type="revolute">
+    <origin xyz="-0.10 0 0.029" rpy="1.57 0 -1.57" />
+    <parent link="upper_wrist_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0" />
+    <child link="GRIPPER_FRAME" />
+  </joint>
+
+  <!-- ================= GRIPPER ================= -->
+  <link name="GRIPPER_FRAME">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/gripper_base_link.STL" />
+      </geometry>
+      <material name="white_colour"/>
+    </visual>
+  </link>
+
+  <link name="RIGHT_FINGER_PROX"> 
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/right_finger_prox_link.STL" />
+      </geometry>
+      <material name="gray_colour"/>
+    </visual>
+  </link>
+
+  <joint name="RIGHT_BOTTOM" type="revolute">
+    <origin xyz="0 -0.030501 0.070003" rpy="0 1.5708 0" />
+    <parent link="GRIPPER_FRAME" />
+    <child link="RIGHT_FINGER_PROX" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.09" upper="0.96" effort="1000" velocity="1000" />
+  </joint>
+
+  <link name="RIGHT_FINGER_DIST"> 
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/right_finger_dist_link.STL" />
+      </geometry>
+      <material name="gray_colour"/>
+    </visual> 
+  </link>
+
+  <joint name="RIGHT_TIP" type="revolute">
+    <origin xyz="-0.045636 0.020423 0" rpy="0 0 0" />
+    <parent link="RIGHT_FINGER_PROX" />
+    <child link="RIGHT_FINGER_DIST" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.03" upper="0.21" effort="1000" velocity="1000" />
+  </joint>
+
+  <link name="LEFT_FINGER_PROX">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/left_finger_prox_link.STL" />
+      </geometry>
+      <material name="gray_colour"/>
+    </visual>
+  </link>
+
+  <joint name="LEFT_BOTTOM" type="revolute">
+    <origin xyz="0 0.0305 0.070003" rpy="0 1.5708 0" />
+    <parent link="GRIPPER_FRAME" />
+    <child link="LEFT_FINGER_PROX" />
+    <axis xyz="0 0 1" />
+    <limit lower="-0.96" upper="0.09" effort="1000" velocity="1000" />
+  </joint>
+
+  <link name="LEFT_FINGER_DIST">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/left_finger_dist_link.STL" />
+      </geometry>
+      <material name="gray_colour"/>
+    </visual>
+  </link>
+
+  <joint name="LEFT_TIP" type="revolute">
+    <origin xyz="-0.045636 -0.020423 6.9901E-05" rpy="0 0 0" />
+    <parent link="LEFT_FINGER_PROX" />
+    <child link="LEFT_FINGER_DIST" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-0.21" upper="1.03" effort="1000" velocity="1000" />
+  </joint>
+</robot>
