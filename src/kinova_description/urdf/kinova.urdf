@@ -120,6 +120,11 @@
 
   <!-- ================= GRIPPER ================= -->
   <link name="GRIPPER_FRAME">
+    <inertial>
+      <origin xyz="4.03E-06 1.08E-05 0.04139748" rpy="0 0 0" />
+      <mass value="0.1395" />
+      <inertia ixx="0.00011614" ixy="1E-08" ixz="4E-08" iyy="0.00010327" iyz="0" izz="9.707E-05" />
+    </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -127,9 +132,20 @@
       </geometry>
       <material name="white_colour"/>
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/gripper_base_link.STL" />
+      </geometry>
+    </collision>
   </link>
 
   <link name="RIGHT_FINGER_PROX"> 
+    <inertial>
+      <origin xyz="0.020257 0.0063483 6.991E-05" rpy="0 0 0" />
+      <mass value="0.018385" />
+      <inertia ixx="2.29E-06" ixy="1.43E-06" ixz="0" iyy="4.56E-06" iyz="0" izz="4.77E-06" />
+    </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -137,6 +153,12 @@
       </geometry>
       <material name="gray_colour"/>
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/right_finger_prox_link.STL" />
+      </geometry>
+    </collision>
   </link>
 
   <joint name="RIGHT_BOTTOM" type="revolute">
@@ -148,6 +170,11 @@
   </joint>
 
   <link name="RIGHT_FINGER_DIST"> 
+    <inertial>
+      <origin xyz="0.018488 0.0011091 0" rpy="0 0 0" />
+      <mass value="0.010748" />
+      <inertia ixx="6.3E-07" ixy="3.2E-07" ixz="0" iyy="1.83E-06" iyz="0" izz="1.61E-06" />
+    </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -155,6 +182,12 @@
       </geometry>
       <material name="gray_colour"/>
     </visual> 
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/right_finger_dist_link.STL" />
+      </geometry>
+    </collision>
   </link>
 
   <joint name="RIGHT_TIP" type="revolute">
@@ -166,6 +199,11 @@
   </joint>
 
   <link name="LEFT_FINGER_PROX">
+    <inertial>
+      <origin xyz="0.020257 0.0063483 6.99E-05" rpy="0 0 0" />
+      <mass value="0.018385" />
+      <inertia ixx="2.29E-06" ixy="1.43E-06" ixz="0" iyy="4.56E-06" iyz="0" izz="4.77E-06" />
+    </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -173,6 +211,12 @@
       </geometry>
       <material name="gray_colour"/>
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/left_finger_prox_link.STL" />
+      </geometry>
+    </collision>
   </link>
 
   <joint name="LEFT_BOTTOM" type="revolute">
@@ -184,6 +228,11 @@
   </joint>
 
   <link name="LEFT_FINGER_DIST">
+    <inertial>
+      <origin xyz="-0.018488 0.0011091 0" rpy="0 0 0" />
+      <mass value="0.010748" />
+      <inertia ixx="6.3E-07" ixy="3.2E-07" ixz="0" iyy="1.83E-06" iyz="0" izz="1.61E-06" />
+    </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -191,6 +240,12 @@
       </geometry>
       <material name="gray_colour"/>
     </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://kinova_description/meshes/left_finger_dist_link.STL" />
+      </geometry>
+    </collision>
   </link>
 
   <joint name="LEFT_TIP" type="revolute">
