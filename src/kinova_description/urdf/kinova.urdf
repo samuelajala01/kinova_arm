@@ -220,12 +220,12 @@
   </link>
 
   <joint name="LEFT_BOTTOM" type="revolute">
-    <origin xyz="0 0.0305 0.070003" rpy="0 1.5708 0" />
-    <parent link="GRIPPER_FRAME" />
-    <child link="LEFT_FINGER_PROX" />
-    <axis xyz="0 0 1" />
-    <limit lower="-0.96" upper="0.09" effort="1000" velocity="1000" />
-  </joint>
+  <origin xyz="0 0.0305 0.070003" rpy="0 1.5708 0" />
+  <parent link="GRIPPER_FRAME" />
+  <child link="LEFT_FINGER_PROX" />
+  <axis xyz="0 0 1" />
+  <limit lower="-0.96" upper="0.22" effort="1000" velocity="1000" />
+</joint>
 
   <link name="LEFT_FINGER_DIST">
     <inertial>
