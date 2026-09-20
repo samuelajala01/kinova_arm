@@ -1,0 +1,46 @@
+<mujoco model="kinova_tabletop_scene">
+  <compiler autolimits="true"/>
+  <option timestep="0.002" integrator="implicitfast"/>
+
+  <include file="kinova.xml"/>
+
+  <statistic center="0 0 0.4" extent="1.2"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="2 2 .05" type="plane" material="grid" condim="3"/>
+    
+    <light directional="true" diffuse=".8 .8 .8" specular=".2 .2 .2" pos="0 0 4" dir="0 0 -1"/>
+  </worldbody>
+   
+  <equality>
+    <joint joint1="RIGHT_TIP" joint2="RIGHT_BOTTOM" polycoef="0 -1 0 0 0"/>
+    <joint joint1="LEFT_TIP" joint2="LEFT_BOTTOM" polycoef="0 1 0 0 0"/>
+  </equality>
+
+  <actuator>
+    <position name="act_base" joint="base_to_shoulder" kp="300" kv="30" ctrlrange="-3.14 3.14"/>
+    <position name="act_shoulder" joint="shoulder_to_upper_arm" kp="300" kv="30" ctrlrange="-3.14 3.14"/>
+    <position name="act_elbow" joint="arm_to_upper_arm" kp="200" kv="20" ctrlrange="-3.14 3.14"/>
+    <position name="act_wrist1" joint="forearm_to_lower_wrist" kp="100" kv="10" ctrlrange="-3.14 3.14"/>
+    <position name="act_wrist2" joint="lower_wrist_to_upper_wrist" kp="100" kv="10" ctrlrange="-2.57 2.83"/>
+    <position name="act_wrist3" joint="arm_to_gripper" kp="100" kv="10" ctrlrange="-3.14 3.14"/>
+    <position name="act_finger_right" joint="RIGHT_BOTTOM" kp="50" kv="5" ctrlrange="-0.09 0.96"/>
+    <position name="act_finger_left" joint="LEFT_BOTTOM" kp="50" kv="5" ctrlrange="-0.96 0.22"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0.5 -1.0 0 0.5 0 0 0 0 0" />
+  </keyframe>
+</mujoco>
